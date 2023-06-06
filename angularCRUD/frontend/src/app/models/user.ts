@@ -2,8 +2,10 @@ export interface User {
     id: number,
     nume: string,
     prenume: string,
-    email: string,
-    datanastere: Date,
-    dataadaugare?: Date,
+    datanastere:Date, //string
+    email:string,
     telefon: string,
+    dataadaugare?:Date,
+    actiune?:string,
+    'users'?:any
 }

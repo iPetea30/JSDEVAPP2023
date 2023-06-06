@@ -98,16 +98,15 @@
               "src/assets"
             ],
             "styles": [
-              
               "src/styles.css"
             ],
-            "scripts": [
-              
-            ]
+            "scripts": []
           }
         }
       }
     }
   },
-  "defaultProject": "frontend"
+  "cli": {
+    "analytics": false
+  }
 }
