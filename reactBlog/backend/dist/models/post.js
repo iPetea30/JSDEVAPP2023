@@ -68,10 +68,10 @@ const findOne = (postId, callback) => {
 exports.findOne = findOne;
 // create post
 const addPost = (post, callback) => {
-    const queryString = "INSERT INTO posts (titlu, continut, categorie_id, user_id) VALUES (?, ?, ?, ?)";
+    const queryString = "INSERT INTO posts (titlu, continut, poza, categorie_id, user_id) VALUES (?, ?, ?, ?, ?)";
     console.log(post);
     try {
-        let sqldeb = db_1.db.query(queryString, [post.titlu, post.continut, post.categorie_id, post.user_id], (err, result) => {
+        let sqldeb = db_1.db.query(queryString, [post.titlu, post.continut, post.poza, post.categorie_id, post.user_id], (err, result) => {
             if (err) {
                 callback(err);
             }

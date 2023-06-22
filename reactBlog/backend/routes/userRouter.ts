@@ -4,8 +4,8 @@ import * as bodyParser from "body-parser";
 import * as userModel from "../models/user";
 import {User} from "../types/User";
 import { check,validationResult }  from 'express-validator';
-import { generateToken, verifyToken } from '../jwt';
-
+import { generateToken } from '../jwt';
+import { verifyToken } from '../jwt';
 
 const userRouter = express.Router();
 var jsonParser = bodyParser.json();
@@ -13,7 +13,7 @@ var jsonParser = bodyParser.json();
 
 userRouter.get("/", async (req: Request, res: Response) => {
   if (!verifyToken(req, res)) {
-    return res.status(403).json({"message": '<b>Trebue sa fii logat pentru a accesa aceasta zona!<b>'});
+    return res.status(403).json({"message": '<b>Trebue sa fi logat pentru a accesa aceasta zona!<b>'});
 }
   userModel.findAll((err: Error, users: User[]) => {
     if (err) {
@@ -27,7 +27,7 @@ userRouter.get("/", async (req: Request, res: Response) => {
 
 userRouter.get("/:id", async (req: Request, res: Response) => {
   if (!verifyToken(req, res)) {
-    return res.status(403).json({"message": '<b>Trebue sa fii logat pentru a accesa aceasta zona!<b>'});
+    return res.status(403).json({"message": '<b>Trebue sa fi logat pentru a accesa aceasta zona!<b>'});
 }
   const userId: number = Number(req.params.id);
   userModel.findOne(userId, (err: Error, user: User) => {
@@ -123,5 +123,11 @@ userRouter.post("/veifyLogin",jsonParser, async (req: Request, res: Response) =>
     });
   });
 });
+userRouter.post("/logout", async (req: Request, res: Response) => {
+  return  res.status(200).json({
+    accessToken: null,
+    message: "User has been logged out."
+  })
+})
 
 export {userRouter};
